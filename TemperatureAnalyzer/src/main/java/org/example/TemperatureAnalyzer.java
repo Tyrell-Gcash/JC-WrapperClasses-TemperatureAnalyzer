@@ -43,24 +43,26 @@ public class TemperatureAnalyzer {
             return;
         }
 
+        System.out.println("\n--- Temperature Analysis ---\n");
+        System.out.println("Parsed Day 1 Temp (primitive double): " + day1TempPrimitive);
+        System.out.println("Parsed Day 2 Temp (primitive double): " + day2TempPrimitive + "\n");
 
         //Part 2: Wrapper Object Creation (valueOf)
         Double day1TempWrapper = Double.valueOf(day1TempPrimitive);
         Double day2TempWrapper = Double.valueOf(day2TempPrimitive);
         Double day3TempWrapper = Double.valueOf(day3TempPrimitive);
 
-
         //Part 3: Comparison (compareTo)
         int day1VsDay2 = day1TempWrapper.compareTo(day2TempWrapper);
 
         if (day1VsDay2 == -1){
-            System.out.println("Day 1 " + day1TempPrimitive + "°C was cooler than Day 2" + day2TempPrimitive + "°C");
+            System.out.println("Day 1 (" + day1TempPrimitive + "°C) was cooler than Day 2 (" + day2TempPrimitive + "°C)\n");
         }
         else if (day1VsDay2 == 0){
-            System.out.println("Day 1 " + day1TempPrimitive + "°C was the same as Day 2" + day2TempPrimitive + "°C");
+            System.out.println("Day 1 (" + day1TempPrimitive + "°C) was the same as Day 2 (" + day2TempPrimitive + "°C)\n");
         }
         else if (day1VsDay2 == 1) {
-            System.out.println("Day 1 (" + day1TempPrimitive + "°C) was warmer than Day 2(" + day2TempPrimitive + "°C)");
+            System.out.println("Day 1 (" + day1TempPrimitive + "°C) was warmer than Day 2 (" + day2TempPrimitive + "°C)\n");
         }
 
         //Part 4: Primitive Extraction (xxxValue)
@@ -69,5 +71,17 @@ public class TemperatureAnalyzer {
 
         System.out.println("Extracted Day 1 Temp (primitive float from Double wrapper): " + day1TempFloat);
         System.out.println("Extracted Day 2 Temp (primitive int from Double wrapper, truncated): " + day2TempInt);
+
+        //Part 5: Extension (For the Third Temperature & Finding Max)
+        double day1Primitive = day1TempWrapper.doubleValue();
+        double day2Primitive = day2TempWrapper.doubleValue();
+        double day3Primitive = day3TempWrapper.doubleValue();
+        double temporaryMaxTemp;
+
+        temporaryMaxTemp = Math.max(day1Primitive, day2Primitive); //Compare 1 and 2
+        temporaryMaxTemp = Math.max(temporaryMaxTemp, day2Primitive); //Temp Max and 3
+        temporaryMaxTemp = Math.max(temporaryMaxTemp, day3Primitive); //Temp Max and 3
+
+        System.out.println("\nThe highest temperature recorded was: " + temporaryMaxTemp +"°C");
     }
 }
